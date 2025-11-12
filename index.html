@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App (Flexbox)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="search-box">
+            <input type="text" placeholder="Search for a city..." id="city-name">
+            <button onclick="getWeather()">Get Weather</button>
+        </div>
+
+        <div class="main-section">
+            <!-- Left -->
+            <div class="left" >
+                <div id="left">
+
+                    <h2>San Francisco</h2>
+                    <p>California, USA</p>
+                    <img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" alt="">
+                    <div class="temp">
+                        <h1>72</h1><span>°F</span>
+                    </div>
+                    <p class="status">Partly Cloudy</p>
+                    <p class="hl">H: 78° / L: 62°</p>
+                </div>
+
+                <div class="forecast">
+                    <h3>5-Day Forecast</h3>
+                    <div class="forecast-list" id="forecast-list">
+                        <!-- <div class="forecast-item">
+                            <p>Mon</p><img src="https://cdn-icons-png.flaticon.com/512/1163/1163624.png" alt="">
+                            <p>78° / 62°</p>
+                        </div>
+                        <div class="forecast-item">
+                            <p>Tue</p><img src="https://cdn-icons-png.flaticon.com/512/414/414927.png" alt="">
+                            <p>75° / 60°</p>
+                        </div>
+                        <div class="forecast-item">
+                            <p>Wed</p><img src="https://cdn-icons-png.flaticon.com/512/3222/3222800.png" alt="">
+                            <p>79° / 64°</p>
+                        </div>
+                        <div class="forecast-item">
+                            <p>Thu</p><img src="https://cdn-icons-png.flaticon.com/512/2698/2698194.png" alt="">
+                            <p>77° / 61°</p>
+                        </div>
+                        <div class="forecast-item">
+                            <p>Fri</p><img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" alt="">
+                            <p>80° / 63°</p>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right -->
+            <d iv class="right">
+                <h3>Today's Forecast</h3>
+                <div class="hourly" id="hourly">
+                    <!-- <div class="hour">
+                        <p>Now</p><img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png">
+                        <h4>72°</h4>
+                    </div>
+                    <div class="hour">
+                        <p>1 PM</p><img src="https://cdn-icons-png.flaticon.com/512/414/414927.png">
+                        <h4>74°</h4>
+                    </div>
+                    <div class="hour">
+                        <p>2 PM</p><img src="https://cdn-icons-png.flaticon.com/512/1163/1163624.png">
+                        <h4>76°</h4>
+                    </div>
+                    <div class="hour">
+                        <p>3 PM</p><img src="https://cdn-icons-png.flaticon.com/512/2698/2698194.png">
+                        <h4>77°</h4>
+                    </div>
+                    <div class="hour">
+                        <p>4 PM</p><img src="https://cdn-icons-png.flaticon.com/512/3222/3222800.png">
+                        <h4>75°</h4>
+                    </div>
+                    <div class="hour">
+                        <p>6 PM</p><img src="https://cdn-icons-png.flaticon.com/512/414/414974.png">
+                        <h4>71°</h4>
+                    </div>
+                    <div class="hour">
+                        <p>9 PM</p><img src="https://cdn-icons-png.flaticon.com/512/414/414972.png">
+                        <h4>68°</h4>
+                    </div>
+                    <div class="hour">
+                        <p>12 AM</p><img src="https://cdn-icons-png.flaticon.com/512/414/414933.png">
+                        <h4>65°</h4>
+                    </div> -->
+                </div>
+
+                <div class="bottom" id="bottom">
+                    <h3>Air Quality & More</h3>
+                    <div class="info-grid">
+                        <div class="info-box">
+                            <p>Air Quality<br><strong>32 - Good</strong></p>
+                        </div>
+                        <div class="info-box">
+                            <p>Feels Like<br><strong>74°</strong></p>
+                        </div>
+                        <div class="info-box">
+                            <p>Humidity<br><strong>65%</strong></p>
+                        </div>
+                        <div class="info-box">
+                            <p>Visibility<br><strong>10 mi</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </d>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
