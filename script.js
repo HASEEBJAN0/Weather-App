@@ -26,21 +26,33 @@ const weatherIcons = {
     "Night Mist": "https://cdn-icons-png.flaticon.com/512/1163/1163653.png"
 };
 
-
-
 async function getWeather() {
     console.log("button was clicked")
     try {
+        let left = document.getElementById("left")
+        left.innerHTML = `<div class="loader"></div>`
+        let daysForecastDiv = document.getElementById("forecast-list")
+        daysForecastDiv.innerHTML = `<div class="loader"></div>`
+        let hourlyDiv = document.getElementById("hourly")
+        hourlyDiv.innerHTML = `<div class="loader"></div>`
+        let bottomDiv = document.getElementById("bottom")
+        bottomDiv.innerHTML = `<div class="loader"></div>`
+        let loader = document.getElementsByClassName("loader")
+        console.log(loader);
+        
+        for(let i = 0 ; i < loader.length ; i++) {
+            console.log("loop Running... :" + i)
+            loader[i].style.display = "block"
+        }
         let ApiKey = 'ce8302bf3e75a6f7ae1baf5d20d81d7a';
-        let cityName = document.getElementById("city-name").value
+        let cityName = document.getElementById("city-name").value || "Karachi"
         let CURRENT_WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${ApiKey}&units=metric`
 
         let HOURLY_AND_FIVE_DAYS_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${ApiKey}&units=metric`
-
         let cuurent_weather = await fetch(CURRENT_WEATHER_URL)
         let hourly_and_five_days_weather = await fetch(HOURLY_AND_FIVE_DAYS_FORECAST_URL)
 
-        if (!cuurent_weather.ok && !hourly_and_five_days_weather.ok) {
+        if (!cuurent_weather.ok || !hourly_and_five_days_weather.ok) {
             let current_ERROR = await cuurent_weather.json()
             let hourly_ERROR = await hourly_and_five_days_weather.json()
             throw new Error(`Hourly API HTTP Error: ${hourly_ERROR.message} ` || `CURRENT API HTTP Error: ${current_ERROR.message} `);
@@ -48,7 +60,12 @@ async function getWeather() {
         let CurrentData = await cuurent_weather.json()
         let HourlyData = await hourly_and_five_days_weather.json()
         // console.log("CURRENT DATA ", CurrentData)
-        console.log("HOURLY DATA ", HourlyData)
+        // console.log("HOURLY DATA ", HourlyData)
+        // let loader = document.getElementsByClassName("loader")
+        for(let i = 0 ; i < loader.length ; i++) {
+            loader[i].style.display = "none"
+        }
+        // console.log loader)
 
         // CURRENT WEATHER DATA
 
@@ -64,7 +81,7 @@ async function getWeather() {
         let pressure = CurrentData.main.pressure
 
         // NEXT 5 DAYS WEATHER DATA
-        let daysForecastDiv = document.getElementById("forecast-list")
+        
         daysForecastDiv.innerHTML = ""
         
         for (let i = 0; i < HourlyData.list.length; i++) {
@@ -96,7 +113,7 @@ async function getWeather() {
 
         }
 
-        let left = document.getElementById("left")
+        
         left.innerHTML = `
         <h2>${currentCity}</h2>
                 <img src=${currentIconURL} alt="">
@@ -109,12 +126,8 @@ async function getWeather() {
 
         //  HOURLY WEATHER DATA
 
-        let hourlyDiv = document.getElementById("hourly")
+        
         hourlyDiv.innerHTML = ""
-        // let utcTime = new Date(HourlyData.list[0].dt_txt).getTime(); // UTC timestamp in ms
-        // console.log( "Time " + utcTime);
-        // console.log("Time Zone " + HourlyData.city.timezone);
-        // console.log("City Time " + new Date(utcTime + HourlyData.city.timezone * 1000));
 
 
         for (var i = 0; i < 8; i++) {
@@ -139,7 +152,7 @@ async function getWeather() {
 
 
 
-        let bottomDiv = document.getElementById("bottom")
+        
         // console.log(rightDiv)
 
         bottomDiv.innerHTML = `
@@ -166,13 +179,14 @@ async function getWeather() {
         if (error.name === "TypeError") {
             alert("❌ Network Error: Server ya Internet issue");
         } else {
-            alert("⚠️ Error:", error);
+            alert(error.message);
+            console.log("⚠️ Error:", error);
         }
         return null;
     }
 }
 
-
+window.onload = getWeather
 
 
 
